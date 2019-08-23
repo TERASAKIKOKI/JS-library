@@ -20,8 +20,15 @@
   
   <script src="js/jquerymin.js"></script>
   <script>
-    $('#img_unit').html('ここに、画像リストが表示されます');
-    $('#img_unit').css('margin-top', '100px');
+    $.getJSON('https://h2o-space.com/htmlbook/images.php',function(data) {
+      for (var i = 0; i < data.lengeth; i++) {
+        $('<div class="photo></div>')  //タグを作り出すことができる JSでいうdocument.creatElement
+          .append('<img src="' + data[i].path + '">')  //
+          .append('<div class="inner"><p>' + data[i].caption + '<span>' + data[i].name + '</span></p></div>')
+          .appendTo('img_unit');  //追加する
+      }
+    });
+    
   </script>
 </body>
 
